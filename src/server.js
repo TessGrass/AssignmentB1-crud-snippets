@@ -23,22 +23,22 @@ app.use(express.static('public'))
 try {
   await connectDB()
   app.listen(process.env.PORT)
+
+  // View Engine Setup
+  app.set('view engine', 'ejs')
+  app.set('views', 'src/views/')
+  app.use(expressLayouts)
+  app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
+
+// Pass the base URL.
+  app.use((req, res, next) => {
+    res.locals.baseURL = baseURL
+    next()
+  })
+
+// Register routes.
+  app.use('/', router)
 } catch (err) {
   console.error(err)
   process.exitCode = 1
 }
-
-// View Engine Setup
-app.set('view engine', 'ejs')
-app.set('views', 'src/views/')
-app.use(expressLayouts)
-app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
-
-// Pass the base URL.
-app.use((req, res, next) => {
-  res.locals.baseURL = baseURL
-  next()
-})
-
-// Register routes.
-app.use('/', router)
