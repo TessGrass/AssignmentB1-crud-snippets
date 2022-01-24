@@ -6,5 +6,5 @@ export const router = express.Router()
 router.use('/', homeRouter)
 
 router.use((req, res) => {
-  res.status(404).render('404', { title: '404' })
+  res.status(404).render('./errors/404', { title: '404' })
 })
