@@ -2,5 +2,6 @@ import express from 'express'
 export const router = express.Router()
 
 router.get('/', (req, res, next) => {
-  res.render('./home/index', { title: 'Startpage' })
+  console.log('snippet')
+  res.render('./snippets/snippets', { title: 'View Snippets' })
 })

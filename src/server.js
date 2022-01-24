@@ -9,7 +9,7 @@ import session from 'express-session'
 // import { sessionOpt } from './config/sessions.js'
 import { router } from './routes/router.js'
 import expressLayouts from 'express-ejs-layouts'
-// import { connectDB } from './config/mongoose.js'
+import { connectDB } from './config/mongoose.js'
 import logger from 'morgan'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -19,7 +19,14 @@ const baseURL = process.env.BASE_URL || '/'
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false })) // if removed, you can't add products.
 app.use(express.static('public'))
-app.listen(process.env.PORT)
+
+try {
+ await connectDB()
+ app.listen(process.env.PORT)
+} catch (err) {
+ console.error(err)
+ process.exitCode = 1
+}
 
 // View Engine Setup
 app.set('view engine', 'ejs')
