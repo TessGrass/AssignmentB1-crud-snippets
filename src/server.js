@@ -21,11 +21,11 @@ app.use(express.urlencoded({ extended: false })) // if removed, you can't add pr
 app.use(express.static('public'))
 
 try {
- await connectDB()
- app.listen(process.env.PORT)
+  await connectDB()
+  app.listen(process.env.PORT)
 } catch (err) {
- console.error(err)
- process.exitCode = 1
+  console.error(err)
+  process.exitCode = 1
 }
 
 // View Engine Setup
