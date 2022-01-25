@@ -131,12 +131,12 @@ padding: 10px;
 
 .startpage {
   text-align: center;
-  margin-top: 250px;
+  margin-top: 290px;
 }
 
 .snippet-startpage-top-text {
   font-weight: bold;
-  font-size: 55px;
+  font-size: 65px;
   margin: 0;
     padding: 0;
     line-height:30px;
@@ -144,34 +144,56 @@ padding: 10px;
 
 .snippet-startpage-bottom-text {
   font-weight: bold;
-  font-size: 65px;
-  line-height:74px;
+  font-size: 77px;
+  line-height:78px;
   margin: 0;
     padding: 0;
 }
 
 .crud {
-  font-size: 27px;
-  line-height:3px;
+  font-weight: 200;
+  font-size: 32px;
+  line-height: 1px;
   margin-top: 0;
     padding: 0;    
 }
 
-.signuppage {
+.signup-page, .login-page {
   text-align: center;
   justify-content: center;
   margin-top: 250px;
 }
 
-.signuppage > form {
+.signup-page > form {
   display: inline-block;
   padding: 0;
   margin: 0;
 }
 
-#signupname {
-  width: 
+.login-page > form {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.signup-page-text, .login-page-text {
+  font-size: 30px;
+  padding-bottom: 15px;
   margin: 0 auto;
+}
+
+
+form {
+  display: table;
+}
+
+input {
+  display: table-cell;
+  width: 200px;
+}
+
+.savebutton {
+  vertical-align: center;
 }
 
 .alert{

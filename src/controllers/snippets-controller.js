@@ -1,4 +1,4 @@
-import { Snippet } from '../models/snippets.js'
+import { Snippet } from '../models/snippets-model.js'
 /**
  * Controls the snippets; creates, updates and deletes.
  *

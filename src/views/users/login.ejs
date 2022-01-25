@@ -7,18 +7,15 @@
     <title><%=title%></title>
 </head>
 <body>
-        <div class ="loginpage">
-            LOGIN PAGE
-        </div>
-        Testa databasen nedan:
-        v
-            <div>
-              <p>Snippet title</p>
-              <input type="text" id="inputName" name="name" placeholder="Snippet title" required="required" autofocus="autofocus" />
-              <p>Snippet code</p>
-              <textarea id="usersnippet" name="usersnippet" rows="4" cols="50" required ="required"></textarea>
-            </div>
-            <button type="submit" class="savebutton">Save</button>
-          </form> 
+  <div class ="login-page">
+    <p class="login-page-text">Login here:</p>
+    <form method="post" action="../login">
+        <label for="fname">User Name</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="lname">Password (min 8 characters)</label><br>
+        <input type="password" id="password" name="password">
+      </form><br>
+      <button type="submit" class="savebutton">Login</button>
+</div>
 </body>
 </html>
