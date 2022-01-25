@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Roboto+Mono:wght@300&display=swap');
 
 
 body {
@@ -8,6 +9,7 @@ body {
     background: rgb(255, 255, 255);
     overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
+  max-height: 920px;
 }
 body > footer {
     font-weight: 200;
@@ -101,3 +103,66 @@ background: white;
   margin-top: 20px;
   font-size: 22px;
 }
+
+.snippetpage > pre {
+  width: 300px;
+background: #333333;
+color: white;
+padding: 10px;
+
+}
+
+.codetext {
+  font-family: 'Roboto Mono';
+  font-size: 12px;
+}
+
+.snippetpage > p {
+  padding-top: 8px;
+  padding-bottom: 0;
+}
+
+.startpage {
+  text-align: center;
+  margin-top: 250px;
+}
+
+.snippet-startpage-top-text {
+  font-weight: bold;
+  font-size: 55px;
+  margin: 0;
+    padding: 0;
+    line-height:30px;
+}
+
+.snippet-startpage-bottom-text {
+  font-weight: bold;
+  font-size: 65px;
+  line-height:74px;
+  margin: 0;
+    padding: 0;
+}
+
+.crud {
+  font-size: 27px;
+  line-height:3px;
+  margin-top: 0;
+    padding: 0;    
+}
+
+.alert{
+  background: #f89406;
+      border-color: #e96506;
+      color: #ffffff;
+      animation: fadeIn 0.5s linear;
+      animation-iteration-count: 1;
+      animation-direction: alternate;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+
+

@@ -17,7 +17,7 @@ async viewSnippets (req, res, next) {
         id: obj._id,
         body: obj.body
       }))
-      res.render('../views/snippets/snippets', { snippet }) // render to pro
+      res.render('../views/snippets/snippets', { snippet }) // render to snippets
     } catch (error) {
       next(error)
     }
@@ -36,9 +36,12 @@ async viewSnippets (req, res, next) {
         body: req.body.usersnippet
       })
       await snippet.save()
-      // ...redirect to the list of products.
-      res.redirect('/snippets')
+      req.session.flash = {
+        type: 'success', text: 'The item was updated successfully.'
+      }
+      await res.redirect('/snippets')
     } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
       next(error)
     }
   }
