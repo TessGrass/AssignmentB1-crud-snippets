@@ -4,10 +4,9 @@ export const router = express.Router()
 const snippetController = new SnippetController()
 
 router.get('/', (req, res, next) => {
-    console.log('test')
     // res.render('../views/snippets/snippets', { title: 'View Snippets' })
-    snippetController.viewSnippets(req, res, next)
-  })
+  snippetController.viewSnippets(req, res, next)
+})
 
 /* router.get('/', (req, res, next) => {
     console.log('test')

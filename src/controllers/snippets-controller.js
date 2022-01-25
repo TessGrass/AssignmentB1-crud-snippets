@@ -37,7 +37,7 @@ async viewSnippets (req, res, next) {
       })
       await snippet.save()
       req.session.flash = {
-        type: 'success', text: 'The item was updated successfully.'
+        type: 'success', text: 'The snippet was created successfully!'
       }
       await res.redirect('/snippets')
     } catch (error) {
