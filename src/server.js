@@ -6,7 +6,7 @@
 
 import express from 'express'
 import session from 'express-session'
-// import { sessionOpt } from './config/sessions.js'
+import { sessionOpt } from './config/sessions.js'
 import { router } from './routes/router.js'
 import expressLayouts from 'express-ejs-layouts'
 import { connectDB } from './config/mongoose.js'
@@ -33,6 +33,16 @@ try {
 // Pass the base URL.
   app.use((req, res, next) => {
     res.locals.baseURL = baseURL
+    next()
+  })
+
+  app.use(session(sessionOpt))
+
+  app.use((req, res, next) => {
+    if (req.session.flash) {
+      res.locals.flash = req.session.flash
+      delete req.session.flash
+    }
     next()
   })
 
