@@ -13,9 +13,12 @@
           <a href="/signup">Sign-up</a>
         </li>
         <li>
-          <a href="/login">Login</a>
+          <% if(test.login === undefined) { %>
+            <a href="/login">Login</a>
+          <%}else { %>
+            <a href="/signout">Sign-out</a>
+          <%}%>
         </li>
-        <a href="/testsnippet">Test</a>
       </ul>
     </div>
   </nav>

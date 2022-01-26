@@ -3,18 +3,15 @@ import { AccountController } from '../controllers/account-controller.js'
 export const router = express.Router()
 const accountController = new AccountController()
 
-router.get('/', (req, res, next) => {
-  console.log('därädäräd')
-  accountController.authorize(req, res, next)
-  console.log('*********')
-  res.render('users/account')
-  // accountController.userIndex(req, res, next)
-})
-router.get('/:id', (req, res, next) => {
+router.get('/', accountController.authorize, accountController.userIndex)
+// accountController.userIndex(req, res, next)
+// res.render('users/account')
+// accountController.userIndex(req, res, next)
+/* router.get('/:id', (req, res, next) => {
   console.log('härhärhär')
   res.render('..views/users/account')
   console.log(req.body)
-})
+}) */
 
 /* import express from 'express'
 import { SnippetController } from '../controllers/snippets-controller.js'
@@ -30,4 +27,3 @@ router.post('/', (req, res, next) => {
   console.log(req.body)
   snippetController.createSnippet(req, res, next)
 }) */
-

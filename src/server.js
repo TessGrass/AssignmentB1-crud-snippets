@@ -30,7 +30,7 @@ try {
   app.use(expressLayouts)
   app.set('layout', join(directoryFullName, 'views', 'layouts', 'default'))
 
-// Pass the base URL.
+  // Pass the base URL.
   app.use((req, res, next) => {
     res.locals.baseURL = baseURL
     next()
@@ -46,9 +46,13 @@ try {
     next()
   })
 
-// Register routes.
+  // Register routes.
   app.use('/', router)
 } catch (err) {
   console.error(err)
   process.exitCode = 1
 }
+
+/* app.use(function(error, req, res) {
+  console.log(error.status)
+}) */

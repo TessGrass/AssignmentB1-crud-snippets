@@ -1,13 +1,16 @@
 import { User } from '../models/user-model.js'
 
+/**
+ *
+ */
 export class SignUpController {
 /**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
-async createUser (req, res, next) {
+  async createUser (req, res, next) {
     console.log(req.body)
     try {
       const createUser = new User({
@@ -27,4 +30,3 @@ async createUser (req, res, next) {
     }
   }
 }
-

@@ -5,29 +5,30 @@ import { Snippet } from '../models/snippets-model.js'
  */
 export class SnippetController {
 /**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
+ *
+ * @param {*} req
+ * @param {*} res
+ * @param {*} next
  */
-async viewSnippets (req, res, next) {
+  async viewSnippets (req, res, next) {
     try {
+      const test = { login: req.session.username }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
         id: obj._id,
         body: obj.body
       }))
-      res.render('../views/snippets/snippets', { snippet }) // render to snippets
+      res.render('../views/snippets/snippets', { snippet, test }) // render to snippets
     } catch (error) {
       next(error)
     }
   }
 
   /**
-   * 
-   * @param {*} req 
-   * @param {*} res 
-   * @param {*} next 
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
    */
   async createSnippet (req, res, next) {
     try {

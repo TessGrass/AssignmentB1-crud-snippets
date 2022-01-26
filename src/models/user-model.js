@@ -24,9 +24,11 @@ userSchema.pre('save', async function () {
 })
 
 /**
+ * Authenticates username and password.
  *
- * @param {*} username 
- * @param {*} password 
+ * @param {object} username  - The username from the login attempt field.
+ * @param {object} password  - The password from the login attempt field.
+ * @returns {object} user that matches username.
  */
 userSchema.statics.authenticate = async function (username, password) {
   const user = await this.findOne({ username })
