@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>  <h1>VIEW SNIPPETS</h1>
+  <h1>VIEW SNIPPETS</h1>
         <div class ="snippetpage">
             <% if (snippet?.length > 0) { %>
                 <% snippet.forEach(obj => { %>
+                    <div class="snippetwrapper">
                     <p class="titletext"><%= obj.title %></p>
                     <pre><code class="codetext"><%=obj.body %></code></pre>
+                    </div>
                 <% }) %>
               <% } else { %>
                   <p>No products to display.</p>
               <% } %>
         </div>
-</body>
-</html>

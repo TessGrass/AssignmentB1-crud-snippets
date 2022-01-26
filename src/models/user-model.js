@@ -33,7 +33,6 @@ userSchema.statics.authenticate = async function (username, password) {
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new Error('Invalid login attempt.')
   }
-
   return user
 }
 
