@@ -35,7 +35,6 @@ export class SnippetController {
       const snippet = new Snippet({
         title: req.body.name,
         body: req.body.usersnippet
-       
       })
       await snippet.save()
       req.session.flash = {

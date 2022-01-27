@@ -1,10 +1,14 @@
+
+
+<h1>Update Snippet</h1>
+      
 <form method="post" action="./update">
     <div>
-      <p>Product name</p>
-      <input type="text" id="inputName" class="form-control" text="<%=name.title%>" name="name" value="<%=name.title%>" required="required" autofocus="autofocus" />
-      <p>Product description</p>
-      <textarea id="productdescription" name="productdescription" rows="4" cols="50"><%=name.body%></textarea>
+      <p>Snippet name</p>
+      <input type="text" id="inputName"" name="name" value="<%=data.name.title%>" required="required" autofocus="autofocus" />
+      <p>Snippet description</p>
+      <textarea id="productdescription" name="productdescription" rows="4" cols="50"><%=data.name.body%></textarea>
     </div>
-    <button type="submit">Save</button>
-    <input type="hidden" name="id" value="<%=name.id%>" />
-</form> 
+    <button type="submit" class="btn-update-snippet">Update</button>
+    <input type="hidden" name="id" value="<%=data.name.id%>" />
+  </form>

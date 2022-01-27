@@ -34,10 +34,11 @@ export class AccountController {
       const data = { login: req.session.username, title: 'Account' }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
+        body: obj.body,
         id: obj._id,
-        body: obj.body
+        author: obj.author
       }))
-      // console.log(snippet)
+      console.log(snippet)
       res.render('../views/users/account', { snippet, data })
     } catch (error) {
       next(error)
@@ -49,8 +50,8 @@ export class AccountController {
       const data = { login: req.session.username }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
-        id: obj._id,
-        body: obj.body
+        body: obj.body,
+        author: obj.author
       }))
       console.log(snippet)
       console.log('snippipdisnippi')
@@ -77,5 +78,25 @@ export class AccountController {
     }
   }
 
-  
+  async updateSnippet (req, res, next) {
+      console.log('härkljhk')
+      console.log(req.body.id)
+    try {
+     const snippet = await Snippet.findById(req.body.id)
+      if (snippet) {
+        snippet.title = req.body.name
+        snippet.body = req.body.usersnippet
+        snippet.author = req.body.authorname
+        await snippet.save()
+      }
+      req.session.flash = {
+        type: 'success', text: 'The item was updated successfully.'
+      }
+      /* const data = { title: 'Update Snippet' }
+      await res.render('./users/update', { snippet, data }) */
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: error.message }
+      next(error)
+    }
+}
 }

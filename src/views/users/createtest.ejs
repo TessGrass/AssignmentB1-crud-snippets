@@ -18,3 +18,14 @@
     </form> 
 </body>
 </html>
+
+<form method="post" action="./update">
+    <div>
+      <p>Product name</p>
+      <input type="text" id="inputName" class="form-control" text="<%=snippet.title%>" name="name" value="<%=snippet.title%>" required="required" autofocus="autofocus" />
+      <p>Product description</p>
+      <textarea id="productdescription" name="productdescription" rows="4" cols="50"><%=snippet.body%></textarea>
+    </div>
+    <button type="submit">Save</button>
+    <input type="hidden" name="id" value="<%=snippet.id%>" />
+</form> 

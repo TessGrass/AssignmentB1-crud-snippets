@@ -1,5 +1,5 @@
 import express from 'express'
-// import { router as productsRouter } from './products-router.js'
+
 import { router as homeRouter } from './home-router.js'
 import { router as snippetsRouter } from './snippets-router.js'
 import { router as signUpRouter } from './signup-router.js'

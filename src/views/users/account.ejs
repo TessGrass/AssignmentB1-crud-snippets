@@ -7,11 +7,11 @@
       <div class="create-snippet-wrapper">
   <form method="post" action="./account">
     <p class="snippet-title">Snippet title</p>
-        <input type="text" id="inputName" name="name" placeholder="Snippet title" required="required" autofocus="autofocus" />
+        <input type="text" id="inputName" name="name" placeholder="Snippet name" required="required" autofocus="autofocus" />
     <p>Snippet code</p>
         <textarea id="usersnippet" name="usersnippet" rows="4" cols="50" required ="required"></textarea>
     <p>Author</p>
-         <input type="text" id="input-author-name" name="authorname" value="<%=data.login%>" required="required" autofocus="autofocus" /><br>
+         <input type="text" id="input-author-name" name="authorname" value="<%=data.login %>" required="required" autofocus="autofocus" /><br>
        <button type="submit" class="savebutton">Save</button><br>
     </form> 
   </div>
@@ -23,10 +23,13 @@
   </thead>
   <table>
     <% if (snippet?.length > 0) { %>
-      <% snippet.forEach(obj => { %>
+        <% const author = snippet.filter(function (author) {
+            return author.author === data.login;
+          })%>
+      <% author.forEach(obj => { %>
         <tr>
           <th><%= obj.title %></th>
-          <td><%=obj.body%></a></td> <td><a class="edit" href="account/<%=obj.id %>/update">Update</a></td><td><button type="submit" name="id" value="<%=obj.id %>" class="delete-btn">delete</button></td>
+          <td><%=obj.body%></a></td><td><a class="edit" href="account/update/<%=obj.id %>">Update</a></td><td><button type="submit" name="id" value="<%=obj.id %>" class="delete-btn">delete</button></td>
         </a>
         </tr>
       <% }) %>
