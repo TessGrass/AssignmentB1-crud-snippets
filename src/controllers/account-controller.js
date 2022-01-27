@@ -31,15 +31,13 @@ export class AccountController {
    */
   async userIndex (req, res, next) {
     try {
-      console.log('inside user-index method')
       const data = { login: req.session.username, title: 'Account' }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
         id: obj._id,
         body: obj.body
       }))
-      console.log(snippet)
-      console.log('snippipdisnippi')
+      // console.log(snippet)
       res.render('../views/users/account', { snippet, data })
     } catch (error) {
       next(error)
@@ -61,4 +59,23 @@ export class AccountController {
       next(error)
     }
   }
+
+  async createSnippet (req, res, next) {
+      console.log('createsnippet')
+    try {
+      const createSnippet = new Snippet({
+        title: req.body.name,
+        body: req.body.usersnippet,
+        author: req.body.authorname
+      })
+      await createSnippet.save()
+      // ...redirect to the list of products.
+      // res.render('../views/users/account', { newSnippet, data })
+      res.redirect('./account')
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  
 }

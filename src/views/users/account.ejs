@@ -3,8 +3,19 @@
   <h1>Hi <%=data.login %>!</h1>
   <h4>This is your own little space. Here you can create, read, uppdate and delete your own snippet. Have fun!</h4>
   
-
-  <form method="post" action="./create">
+  <div class="account-startpage">
+      <div class="create-snippet-wrapper">
+  <form method="post" action="./account">
+    <p class="snippet-title">Snippet title</p>
+        <input type="text" id="inputName" name="name" placeholder="Snippet title" required="required" autofocus="autofocus" />
+    <p>Snippet code</p>
+        <textarea id="usersnippet" name="usersnippet" rows="4" cols="50" required ="required"></textarea>
+    <p>Author</p>
+         <input type="text" id="input-author-name" name="authorname" value="<%=data.login%>" required="required" autofocus="autofocus" /><br>
+       <button type="submit" class="savebutton">Save</button><br>
+    </form> 
+  </div>
+       <div class="usersnippet-wrapper">
   <thead>
     <tr>
       <th>Your Snippets</th>
@@ -25,3 +36,5 @@
       </tr>
       <% } %>
 </table>
+</div>
+</div>

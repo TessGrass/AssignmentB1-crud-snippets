@@ -24,9 +24,9 @@ export class LoginController {
       req.session.value = req.session.id
       req.session.username = loginUser.username
 
-      console.log('req.session.name')
+     /*  console.log('req.session.name')
       console.log(req.session.value)
-      console.log(req.session.username)
+      console.log(req.session.username) */
 
       res.redirect('./account')
     } catch (error) {

@@ -5,13 +5,22 @@ const accountController = new AccountController()
 
 router.get('/', accountController.authorize, accountController.userIndex)
 
-router.get('/:id/update', (req, res, next) => {
+router.post('/', (req, res, next) => {
+  console.log('här')
+  console.log(req.body)
+  accountController.createSnippet(req, res, next)
+  /* const data = { title: 'Account' }
+    res.redirect('/account')
+    res.render('./users/account', { data }) */
+})
+
+/* router.get('/:id/update', (req, res, next) => {
     console.log('tetst')
     const data = { login: req.session.username, title: 'Update' }
     res.render('./', { data })
-  })
+  }) */
   
-  try {
+ /*  try {
     router.get('/update/:id', async (req, res, next) => {
       const id = req.params.id
       const result = await Item.findById(id)
@@ -19,7 +28,9 @@ router.get('/:id/update', (req, res, next) => {
     })
   } catch (err) {
     next(err)
-  }
+  } */
+
+
 // accountController.userIndex(req, res, next)
 // res.render('users/account')
 // accountController.userIndex(req, res, next)
