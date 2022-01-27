@@ -4,7 +4,8 @@ export const router = express.Router()
 const signUpController = new SignUpController()
 
 router.get('/', (req, res, next) => {
-  res.render('./users/signup', { title: 'Sign-up' })
+  const data = { login: req.session.username, title: 'Sign-Up' }
+  res.render('./users/signup', { data })
 })
 
 router.post('/', (req, res, next) => {

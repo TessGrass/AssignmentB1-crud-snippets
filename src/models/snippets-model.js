@@ -9,6 +9,10 @@ const snippetSchema = new Schema({
   body: {
     type: String,
     required: true
+  },
+  author: {
+    type: String,
+    required: true
   }
 }, { timestamps: true }) // optional
 

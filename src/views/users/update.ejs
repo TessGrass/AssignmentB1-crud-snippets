@@ -1,0 +1,10 @@
+<form method="post" action="./update">
+    <div>
+      <p>Product name</p>
+      <input type="text" id="inputName" class="form-control" text="<%=name.title%>" name="name" value="<%=name.title%>" required="required" autofocus="autofocus" />
+      <p>Product description</p>
+      <textarea id="productdescription" name="productdescription" rows="4" cols="50"><%=name.body%></textarea>
+    </div>
+    <button type="submit">Save</button>
+    <input type="hidden" name="id" value="<%=name.id%>" />
+</form> 

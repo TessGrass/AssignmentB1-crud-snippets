@@ -24,7 +24,6 @@ export class SignUpController {
       }
       await res.redirect('/snippets')
     } catch (error) {
-      console.log('feil')
       req.session.flash = { type: 'danger', text: 'The username is already taken. Please try again.' }
       await res.redirect('/signup')
     }

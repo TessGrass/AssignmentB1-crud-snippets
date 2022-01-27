@@ -1,4 +1,4 @@
-
+import { Snippet } from '../models/snippets-model.js'
 /**
  *
  */
@@ -32,8 +32,31 @@ export class AccountController {
   async userIndex (req, res, next) {
     try {
       console.log('inside user-index method')
-      const test = { login: req.session.username, title: 'Startpage' }
-      res.render('../views/users/account', { test })
+      const data = { login: req.session.username, title: 'Account' }
+      const snippet = (await Snippet.find()).map(obj => ({
+        title: obj.title,
+        id: obj._id,
+        body: obj.body
+      }))
+      console.log(snippet)
+      console.log('snippipdisnippi')
+      res.render('../views/users/account', { snippet, data })
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async viewUserSnippets (req, res, next) {
+    try {
+      const data = { login: req.session.username }
+      const snippet = (await Snippet.find()).map(obj => ({
+        title: obj.title,
+        id: obj._id,
+        body: obj.body
+      }))
+      console.log(snippet)
+      console.log('snippipdisnippi')
+      res.render('../views/users/account', { snippet, data }) // render to snippets
     } catch (error) {
       next(error)
     }

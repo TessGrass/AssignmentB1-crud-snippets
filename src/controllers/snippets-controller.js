@@ -12,13 +12,13 @@ export class SnippetController {
  */
   async viewSnippets (req, res, next) {
     try {
-      const test = { login: req.session.username }
+      const data = { login: req.session.username }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
         id: obj._id,
         body: obj.body
       }))
-      res.render('../views/snippets/snippets', { snippet, test }) // render to snippets
+      res.render('../views/snippets/snippets', { snippet, data }) // render to snippets
     } catch (error) {
       next(error)
     }

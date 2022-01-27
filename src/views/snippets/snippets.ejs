@@ -4,7 +4,8 @@
                 <% snippet.forEach(obj => { %>
                     <div class="snippetwrapper">
                     <p class="titletext"><%= obj.title %></p>
-                    <pre><code class="codetext"><%=obj.body %></code></pre>
+                        <pre><code class="codetext"><%=obj.body %></code></pre>
+                     <p class="authortext"><%=obj.author%></p>
                     </div>
                 <% }) %>
               <% } else { %>

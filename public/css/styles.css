@@ -109,6 +109,23 @@ background: white;
   font-size: 22px;
 }
 
+table {
+  border: 1px solid black;
+  vertical-align: bottom;
+    width: fit-content;
+    height: fit-content;
+  }
+
+th, td {
+  border-bottom: 1px solid rgb(136, 129, 129);
+}
+
+tr:hover {background-color: rgb(170, 240, 217);
+cursor: pointer;
+}
+
+
+
 .snippetwrapper > pre {
   width: 250px;
 background: #333333;
@@ -141,7 +158,10 @@ margin-right: 35px;
 
 .startpage {
   text-align: center;
-  margin-top: 290px;
+  position: absolute;
+  left: 35%;
+  top: 40%;
+  
 }
 
 .snippet-startpage-top-text {
@@ -192,6 +212,29 @@ margin-right: 35px;
   margin: 0 auto;
 }
 
+.dot-container {
+  position: absolute;
+  left: 39.8%;
+  top: 36%;
+}
+
+.dot {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #46d0b6;
+  animation: pulse 1500ms infinite;
+}
+
+
+@keyframes pulse {
+  0% {
+    box-shadow: #46d0b6 0 0 0 0;
+  }
+  75% {
+    box-shadow: #ff69b400 0 0 0 16px;
+  }
+}
 
 form {
   display: table;
@@ -200,6 +243,10 @@ form {
 input {
   display: table-cell;
   width: 200px;
+}
+
+#signup:invalid {
+  outline: solid 2px red;
 }
 
 .savebutton {

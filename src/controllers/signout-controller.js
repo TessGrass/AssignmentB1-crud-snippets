@@ -1,3 +1,8 @@
 
-// req.session.destroy nånting
-// res.redirect()
+export class SignOutController {
+
+    async destroySession (req, res) {
+    console.log('DESTROY!')
+    await req.session.destroy()
+  }
+}

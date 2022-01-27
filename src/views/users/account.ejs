@@ -1,2 +1,27 @@
 
-   <p>TEST</p>
+  
+  <h1>Hi <%=data.login %>!</h1>
+  <h4>This is your own little space. Here you can create, read, uppdate and delete your own snippet. Have fun!</h4>
+  
+
+  <form method="post" action="./create">
+  <thead>
+    <tr>
+      <th>Your Snippets</th>
+    </tr>
+  </thead>
+  <table>
+    <% if (snippet?.length > 0) { %>
+      <% snippet.forEach(obj => { %>
+        <tr>
+          <th><%= obj.title %></th>
+          <td><%=obj.body%></a></td> <td><a class="edit" href="account/<%=obj.id %>/update">Update</a></td><td><button type="submit" name="id" value="<%=obj.id %>" class="delete-btn">delete</button></td>
+        </a>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr colspan="2">
+        <td class="text-center">No snippets to display.</td>
+      </tr>
+      <% } %>
+</table>

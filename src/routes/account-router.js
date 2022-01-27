@@ -4,6 +4,22 @@ export const router = express.Router()
 const accountController = new AccountController()
 
 router.get('/', accountController.authorize, accountController.userIndex)
+
+router.get('/:id/update', (req, res, next) => {
+    console.log('tetst')
+    const data = { login: req.session.username, title: 'Update' }
+    res.render('./', { data })
+  })
+  
+  try {
+    router.get('/update/:id', async (req, res, next) => {
+      const id = req.params.id
+      const result = await Item.findById(id)
+      res.render('update', { name: result, title: 'Update' })
+    })
+  } catch (err) {
+    next(err)
+  }
 // accountController.userIndex(req, res, next)
 // res.render('users/account')
 // accountController.userIndex(req, res, next)
