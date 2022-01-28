@@ -5,11 +5,13 @@ import { Snippet } from '../models/snippets-model.js'
  */
 export class SnippetController {
 /**
+ * Fetches the Snippets from the database.
  *
  * @param {*} req
  * @param {*} res
  * @param {*} next
  */
+
   async viewSnippets (req, res, next) {
     try {
       const data = { login: req.session.username }

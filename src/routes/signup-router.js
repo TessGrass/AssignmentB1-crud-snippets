@@ -9,7 +9,5 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log('signup')
-  console.log(req.body)
   signUpController.createUser(req, res, next)
 })

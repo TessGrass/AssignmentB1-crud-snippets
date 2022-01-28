@@ -6,13 +6,13 @@ import session from 'express-session'
  */
 export class LoginController {
 /**
+ * Handles the user login attempt.
  *
  * @param {object} req - Express request object.
  * @param {object} res - Express respons object.
  * @param {object} next - Express next middleware function.
  */
   async loginUser (req, res, next) {
-    console.log('login user')
     try {
       const loginUser = await User.authenticate(req.body.username, req.body.password)
       req.session.regenerate((error) => {

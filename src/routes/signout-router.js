@@ -3,12 +3,7 @@ import { SignOutController } from '../controllers/signout-controller.js'
 export const router = express.Router()
 const signOutController = new SignOutController()
 
-router.get('/', (req, res) => {
-    signOutController.destroySession(req, res)
-    const data = { title: 'Login' }
-    res.redirect('/login')
-    res.render('./users/login', { data })
-  })
+router.get('/', signOutController.destroySession)
 
 /* router.get('/signout', (req, res, next) => {
     console.log('dfgdfgdfgdfgdfg')

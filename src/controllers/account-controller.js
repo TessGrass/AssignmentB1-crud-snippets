@@ -9,8 +9,7 @@ export class AccountController {
    * @param next
    */
   async authorize (req, res, next) {
-    console.log('------')
-    console.log(req.session.username) // kolla om användaren har rätt att komma åt en resurs (kolla anv namnet. kolla session cookie.)
+ // kolla om användaren har rätt att komma åt en resurs (kolla anv namnet. kolla session cookie.)
     if (req.session.username) {
       next()
     } else {
@@ -38,7 +37,7 @@ export class AccountController {
         id: obj._id,
         author: obj.author
       }))
-      console.log(snippet)
+      console.log()
       res.render('../views/users/account', { snippet, data })
     } catch (error) {
       next(error)
@@ -53,8 +52,6 @@ export class AccountController {
         body: obj.body,
         author: obj.author
       }))
-      console.log(snippet)
-      console.log('snippipdisnippi')
       res.render('../views/users/account', { snippet, data }) // render to snippets
     } catch (error) {
       next(error)
@@ -62,7 +59,6 @@ export class AccountController {
   }
 
   async createSnippet (req, res, next) {
-      console.log('createsnippet')
     try {
       const createSnippet = new Snippet({
         title: req.body.name,
@@ -70,8 +66,8 @@ export class AccountController {
         author: req.body.authorname
       })
       await createSnippet.save()
-      // ...redirect to the list of products.
-      // res.render('../views/users/account', { newSnippet, data })
+      const data = { title: 'Account' }
+      res.render('../views/users/account', { createSnippet, data })
       res.redirect('./account')
     } catch (error) {
       next(error)
@@ -79,24 +75,23 @@ export class AccountController {
   }
 
   async updateSnippet (req, res, next) {
-      console.log('härkljhk')
-      console.log(req.body.id)
     try {
      const snippet = await Snippet.findById(req.body.id)
       if (snippet) {
-        snippet.title = req.body.name
-        snippet.body = req.body.usersnippet
-        snippet.author = req.body.authorname
+        snippet.title = req.body.title
+        snippet.body = req.body.body
+        snippet.author = req.body.author
         await snippet.save()
       }
       req.session.flash = {
-        type: 'success', text: 'The item was updated successfully.'
+        type: 'success', text: 'The snippet was updated successfully.'
       }
-      /* const data = { title: 'Update Snippet' }
-      await res.render('./users/update', { snippet, data }) */
+      const data = { title: 'Update Snippet' }
+      await res.render('./users/account', { data })
+      await res.redirect('.')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }
       next(error)
     }
-}
+  }
 }

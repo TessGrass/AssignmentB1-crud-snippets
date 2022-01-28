@@ -11,7 +11,6 @@ export class SignUpController {
  * @param {*} next
  */
   async createUser (req, res, next) {
-    console.log(req.body)
     try {
       const createUser = new User({
         username: req.body.username,
