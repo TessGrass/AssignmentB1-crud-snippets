@@ -14,6 +14,6 @@ const snippetSchema = new Schema({
     type: String,
     required: true
   }
-}, { timestamps: true }) // optional
+}, { timestamps: true })
 
 export const Snippet = mongoose.model('Snippet', snippetSchema)

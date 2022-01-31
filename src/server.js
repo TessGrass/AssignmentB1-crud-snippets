@@ -52,7 +52,6 @@ try {
   console.error(err)
   process.exitCode = 1
 }
-
-/* app.use(function(error, req, res) {
-  console.log(error.status)
-}) */
+app.use(function(error, req, res) {
+  
+})

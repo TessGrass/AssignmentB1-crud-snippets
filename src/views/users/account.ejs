@@ -11,7 +11,7 @@
     <p>Snippet code</p>
         <textarea id="usersnippet" name="usersnippet" rows="4" cols="50" required ="required"></textarea>
     <p>Author</p>
-         <input type="text" id="input-author-name" name="authorname" value="<%=data.login %>" required="required" autofocus="autofocus" /><br>
+         <input type="text" id="input-author-name" name="authorname" value="<%=data.login %>" required="required" autofocus="autofocus" disabled/><br>
        <button type="submit" class="savebutton">Save</button><br>
     </form> 
   </div>
@@ -22,6 +22,7 @@
     </tr>
   </thead>
   <table>
+      <form method="post" action="./account/delete">
     <% if (snippet?.length > 0) { %>
         <% const author = snippet.filter(function (author) {
             return author.author === data.login;
@@ -38,6 +39,7 @@
         <td class="text-center">No snippets to display.</td>
       </tr>
       <% } %>
+      </form>
 </table>
 </div>
 </div>

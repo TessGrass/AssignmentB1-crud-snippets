@@ -5,28 +5,22 @@ export const router = express.Router()
 const accountController = new AccountController()
 
 router.get('/', accountController.authorize, accountController.userIndex)
-
-router.post('/', (req, res, next) => {
-    accountController.createSnippet(req, res, next)
-})  
-
-router.post('/update', (req, res, next) => {
-  /* console.log(req.body) */
-  accountController.updateSnippet(req, res, next)
-  /* const data = { title: 'Account' }
-    res.redirect('/account')
-    res.render('./users/account', { data }) */
+router.post('/', accountController.authorize, accountController.createSnippet)
+router.post('/update', accountController.authorize, accountController.updateSnippet)
+router.post('/delete', (req, res, next) => {
+    console.log('delete me delete my body')
+  console.log(req.body)
+  accountController.deleteSnippet(req, res, next)
 })
-/* router.get('/update/:id', (req, res, next) => {
-    const id = req.params.id
-    const result = await Item.findById(id)
-    // accountController.updateSnippet(req, res, next)
-    console.log(req.body)
-  }) */
+// router.post('/delete', accountController.authorize, accountController.deleteSnippets)
 
-router.get('/update/:id', async (req, res, next) => {
+router.get('/update/:id', accountController.authorize, accountController.renderUpdate)
+
+
+/* router.get('/update/:id', async (req, res, next) => {
+  accountController.authorize()
   const id = req.params.id
   const result = await Snippet.findById(id)
   const data = { name: result, title: 'Update Snippet' }
   res.render('./users/update', { data })
-})
+}) */

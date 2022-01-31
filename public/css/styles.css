@@ -3,10 +3,10 @@
 
 body, html {
   box-sizing: border-box;
-    font-family: 'Poppins';
-    font-weight: 400;
-    background: rgb(255, 255, 255);
-    overflow-y: hidden; /* Hide vertical scrollbar */
+  font-family: 'Poppins';
+  font-weight: 400;
+  background: rgb(255, 255, 255);
+  overflow-y: hidden; /* Hide vertical scrollbar */
   overflow-x: hidden; /* Hide horizontal scrollbar */
   margin:0 auto;
   height: 100%
@@ -87,9 +87,9 @@ input {
   padding: 10px;
 }
 
-#productdescription {
+/* #productdescription {
 display: block;
-}
+} */
 
 p {
   margin-top: 2px;
@@ -100,16 +100,6 @@ p {
 padding: 0;
 background: white;
 }
-
-/* .alert{
-  padding-left: 10px;
-  background: #f89406;
-      border-color: #e96506;
-      color: #ffffff;
-      animation: fadeIn 0.5s linear;
-      animation-iteration-count: 1;
-      animation-direction: alternate;
-} */
 
 @keyframes fadeIn {
   0% {opacity:0;}
@@ -151,15 +141,14 @@ th, td {
   border-bottom: 1px solid rgb(136, 129, 129);
 }
 
-tr:hover {background-color: rgb(170, 240, 217);
-  /* cursor: pointer; */
+tr:hover {
+  background-color: rgb(170, 240, 217);
 }
 
-
 .snippetwrapper > pre {
-  width: 250px;
+  width: 270px;
   background: #333333;
-  color: white;
+  color: rgb(255, 255, 255);
   padding: 10px;
   margin-top: 0px;
   margin-right: 35px;
@@ -183,7 +172,7 @@ tr:hover {background-color: rgb(170, 240, 217);
 
 .codetext {
   font-family: 'Roboto Mono';
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .startpage {
@@ -282,23 +271,31 @@ input {
 }
 
 .alert--success {
-  background: #77e993;
-      border-color: #06e959;
-      color: #ffffff;
-      animation: fadeIn 0.5s linear;
-      animation-iteration-count: 1;
-      animation-direction: alternate;
+  text-align: center;
+  margin:0 auto;
+  background: rgb(170, 240, 217);
+  border-color: #77e993;
+  width: 60%;
+  height: 30px;
+  color: rgb(66, 140, 115);
+  animation: fadeIn 0.5s linear;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
 }
 
+.alert--danger {
+  text-align: center;
+  margin:0 auto;
+  background: #f75353;
+  border-color: #f86a6a;
+  width: 60%;
+  height: 30px;
+  color: #4d0000;
+  animation: fadeIn 0.5s linear;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
 
-/* .alert {
-  background: #f89406;
-      border-color: #e96506;
-      color: #ffffff;
-      animation: fadeIn 0.5s linear;
-      animation-iteration-count: 1;
-      animation-direction: alternate;
-} */
 
 @keyframes fadeIn {
   0% {opacity:0;}

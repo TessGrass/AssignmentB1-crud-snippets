@@ -32,7 +32,7 @@ export class SnippetController {
    * @param {*} res
    * @param {*} next
    */
-  async createSnippet (req, res, next) {
+  /* async createSnippet (req, res, next) {
     try {
       const snippet = new Snippet({
         title: req.body.name,
@@ -47,5 +47,5 @@ export class SnippetController {
       req.session.flash = { type: 'danger', text: error.message }
       next(error)
     }
-  }
+  } */
 }
