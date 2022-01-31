@@ -10,15 +10,14 @@
           <a href="/snippets">View Snippets</a>
         </li>
         <li>
-          <% if(typeof data.login === undefined) { %>
-
+          <% if(typeof username !== 'undefined') { %>
             <a href="/account">Account</a>
           <%}else { %>
             <a href="/signup">Sign-up</a>
           <%}%>
         </li>
         <li>
-          <% if(typeof data.login !== undefined) { %>
+          <% if(typeof username === 'undefined') { %>
             <a href="/login">Login</a>
           <%}else { %>
             <a href="/signout">Sign-out</a>

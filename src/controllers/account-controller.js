@@ -4,13 +4,13 @@ import { Snippet } from '../models/snippets-model.js'
  */
 export class AccountController {
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Checks if the user exists and the password matches.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
    */
-  async authorize (req, res, next) {
-      console.log(req.session.username)
- // kolla om användaren har rätt att komma åt en resurs (kolla anv namnet. kolla session cookie.)
+  async authenticateUser (req, res, next) {
     if (req.session.username) {
       next()
     } else {
@@ -20,16 +20,41 @@ export class AccountController {
       }
       res.redirect('/')
     }
-
-    // console.log(req.session.username) // = något namn i databasen findbyid()
   }
 
   /**
-   * @param req
-   * @param res
-   * @param next
+   * Checks if user has permission to access a certain content.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
    */
-  async userIndex (req, res, next) {
+  async authorizeUser (req, res, next) {
+    try {
+      console.log('ffffffffff')
+      console.log(req.params.id)
+      console.log(req.session.username)
+
+      await Snippet.authorizeUser(req.params.id, req.session.username)
+
+      next()
+    } catch (error) {
+      req.session.flash = {
+        type: 'danger',
+        text: 'You dont have access to this content.'
+      }
+      res.redirect('../')
+    }
+  }
+
+  /**
+   * Checks if user has permission to access a certain content.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
+  async userAccount (req, res, next) {
     try {
       const data = { login: req.session.username, title: 'Account' }
       const snippet = (await Snippet.find()).map(obj => ({
@@ -45,6 +70,13 @@ export class AccountController {
     }
   }
 
+  /**
+   * Render the authorized user snippets.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
   async viewUserSnippets (req, res, next) {
     try {
       const data = { login: req.session.username }
@@ -59,6 +91,13 @@ export class AccountController {
     }
   }
 
+  /**
+   * Create a snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
   async createSnippet (req, res, next) {
     try {
       const createSnippet = new Snippet({
@@ -79,9 +118,16 @@ export class AccountController {
     }
   }
 
+  /**
+   * Update a snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
   async updateSnippet (req, res, next) {
     try {
-     const snippet = await Snippet.findById(req.body.id)
+      const snippet = await Snippet.findById(req.body.id)
       if (snippet) {
         snippet.title = req.body.title
         snippet.body = req.body.body
@@ -100,26 +146,38 @@ export class AccountController {
     }
   }
 
-  async renderUpdate(req, res, next) {
-      console.log('render update')
+  /**
+   * Render a view for the snippet that want's to be updated.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
+  async renderUpdate (req, res, next) {
     const id = req.params.id
     const result = await Snippet.findById(id)
     const data = { name: result, title: 'Update Snippet' }
     res.render('./users/update', { data })
   }
 
+  /**
+   * Deletes the chosen snippet.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
   async deleteSnippet (req, res, next) {
     try {
-        console.log('dflgkjdfglkjdfglkjdfgdflgkjdfglkjdfg')
       console.log(req.body.id)
-    await Snippet.findByIdAndDelete(req.body.id)
-    req.session.flash = {
-      type: 'success', text: 'The snippet was deleted successfully.'
-    }
-    await res.redirect('./')
+      await Snippet.findByIdAndDelete(req.body.id)
+      req.session.flash = {
+        type: 'success', text: 'The snippet was deleted successfully.'
+      }
+      await res.redirect('./')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }
       next(error)
     }
-}
+  }
 }

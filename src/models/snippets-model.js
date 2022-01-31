@@ -16,4 +16,14 @@ const snippetSchema = new Schema({
   }
 }, { timestamps: true })
 
+snippetSchema.statics.authorizeUser = async function (id, username) {
+  console.log('hähäh')
+  const snippet = await Snippet.findById(id)
+  console.log(snippet)
+  if (snippet.author !== username) {
+    throw new Error('You cant access this content')
+  }
+  return snippet
+}
+
 export const Snippet = mongoose.model('Snippet', snippetSchema)

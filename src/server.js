@@ -43,6 +43,10 @@ try {
       res.locals.flash = req.session.flash
       delete req.session.flash
     }
+    if (req.session.username) {
+      console.log('härinnehärinne')
+      res.locals.username = req.session.username
+    }
     next()
   })
 
