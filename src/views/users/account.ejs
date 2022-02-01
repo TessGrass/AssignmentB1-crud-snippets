@@ -10,8 +10,7 @@
         <input type="text" id="inputName" name="name" placeholder="Snippet name" required="required" autofocus="autofocus" />
     <p>Snippet code</p>
         <textarea id="usersnippet" name="usersnippet" rows="4" cols="50" required ="required"></textarea>
-    <p>Author</p>
-         <br>
+    <p class="author-create">Author: <%=data.login%></p>
          <input type="hidden" name="authorname" value="<%=data.login%>" />
        <button type="submit" class="savebutton">Save</button><br>
     </form> 
@@ -24,6 +23,7 @@
   </thead>
   <table>
       <form method="post" action="./account/delete">
+          
     <% if (snippet?.length > 0) { %>
         <% const author = snippet.filter(function (author) {
             return author.author === data.login;
@@ -40,6 +40,7 @@
         <td class="text-center">No snippets to display.</td>
       </tr>
       <% } %>
+     
       </form>
 </table>
 </div>

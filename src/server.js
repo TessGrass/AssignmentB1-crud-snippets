@@ -18,7 +18,7 @@ const directoryFullName = dirname(fileURLToPath(import.meta.url)) // Sökvägen 
 const baseURL = process.env.BASE_URL || '/'
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false })) // if removed, you can't add products.
-app.use(express.static('public'))
+app.use(express.static(join(directoryFullName, '..', 'public')))
 
 try {
   await connectDB()
@@ -36,6 +36,12 @@ try {
     next()
   })
 
+  // HÄR SAKNAS DET NÅGOT MED PROXY
+  if (app.get('env') === 'production') {
+    app.set('trust proxy', 1) // trust first proxy
+    sessionOpt.cookie.secure = true // serve secure cookies
+  }
+
   app.use(session(sessionOpt))
 
   app.use((req, res, next) => {
@@ -44,7 +50,6 @@ try {
       delete req.session.flash
     }
     if (req.session.username) {
-      console.log('härinnehärinne')
       res.locals.username = req.session.username
     }
     next()
@@ -56,6 +61,8 @@ try {
   console.error(err)
   process.exitCode = 1
 }
-app.use(function(error, req, res) {
-  
+app.use(function (error, req, res, next) {
+  if (error.status === 404) {
+    return res.status(404).sendFile(join(directoryFullName, 'views', 'errors', '404.ejs'))
+  }
 })

@@ -14,8 +14,6 @@ router.post('/delete', (req, res, next) => {
 // router.post('/delete', accountController.authorize, accountController.deleteSnippets)
 
 router.get('/update/:id', accountController.authenticateUser, accountController.authorizeUser, accountController.renderUpdate)
-
-
 /* router.get('/update/:id', async (req, res, next) => {
   accountController.authorize()
   const id = req.params.id

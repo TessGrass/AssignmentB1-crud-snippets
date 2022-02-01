@@ -12,16 +12,24 @@ body, html {
   height: 100%
 
 }
-body > footer {
-    font-weight: 200;
-    font-size: 20px;
-    padding-bottom: 10px;
+body > footer { 
     position: absolute;
     bottom: 0;
     text-align:center;
     width: 100%;
-    height: 60px;
-    background-color: #f5f5f5;
+    height: 50px;
+    background:#ffffff;
+    /* background-color: rgb(187, 245, 221); */
+}
+
+.footer-text {
+  font-weight: 200;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+hr {
+  margin: 0px;
 }
 
 h1 {
@@ -87,10 +95,6 @@ input {
   padding: 10px;
 }
 
-/* #productdescription {
-display: block;
-} */
-
 p {
   margin-top: 2px;
   margin-bottom: 0;
@@ -104,11 +108,6 @@ background: white;
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
-}
-
-.error {
-  margin-top: 20px;
-  font-size: 22px;
 }
 
 .account-startpage {
@@ -152,6 +151,8 @@ tr:hover {
   padding: 10px;
   margin-top: 0px;
   margin-right: 35px;
+  margin-bottom: 0px;
+  margin-left: 10px;
 }
 
 .snippetpage {
@@ -164,7 +165,8 @@ tr:hover {
 	align-content: flex-start;
 }
 
-.titletext{
+.titletext {
+  margin-left: 10px;
   padding-top: 8px;
   padding-bottom: 0;
   width: fit-content;
@@ -173,6 +175,12 @@ tr:hover {
 .codetext {
   font-family: 'Roboto Mono';
   font-size: 11px;
+}
+
+.authortext {
+  margin-left: 10px;
+  padding-top: 0px;
+  font-size: 12px;
 }
 
 .startpage {
@@ -231,22 +239,25 @@ tr:hover {
 }
 
 .dot-container {
+  background: yellow;
   position: absolute;
   left: 39.8%;
   top: 36%;
 }
 
 .dot {
+  margin-left: 80px;
+  margin-bottom: 12px;
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  background: #46d0b6;
+  background: #c0f8e1;
   animation: pulse 1500ms infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: #46d0b6 0 0 0 0;
+    box-shadow: #82d0c1 0 0 0 0;
   }
   75% {
     box-shadow: #ff69b400 0 0 0 16px;
@@ -296,10 +307,34 @@ input {
   animation-direction: alternate;
 }
 
-
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
+}
+
+.error {
+  margin-top: 6em;
+  font-size: 22px;
+  margin-left: 50px;
+}
+
+.error-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40%;
+ max-height: 40%;
+}
+
+.error-text {
+  font-size: 18px;
+  text-align: center;
+}
+
+.author-create {
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-top: 0px;
 }
 
 

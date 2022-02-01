@@ -1,6 +1,6 @@
 import { Snippet } from '../models/snippets-model.js'
 /**
- *
+ * Controls the authorize and authenticate process after login.
  */
 export class AccountController {
   /**
@@ -41,9 +41,12 @@ export class AccountController {
     } catch (error) {
       req.session.flash = {
         type: 'danger',
-        text: 'You dont have access to this content.'
+        text: 'You dont have access to this content'
       }
-      res.redirect('../')
+      /* res.status(403) */
+      // res.redirect(403, '../')
+      /* res.redirect('.') */
+      // res.redirect('../')
     }
   }
 
@@ -109,8 +112,8 @@ export class AccountController {
       req.session.flash = {
         type: 'success', text: 'The snippet was created successfully!'
       }
-      const data = { title: 'Account' }
-      res.render('../views/users/account', { createSnippet, data })
+      // const data = { title: 'Account' }
+      res.render('../views/users/account', { createSnippet })
       res.redirect('./account')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }
@@ -137,8 +140,8 @@ export class AccountController {
       req.session.flash = {
         type: 'success', text: 'The snippet was updated successfully.'
       }
-      const data = { title: 'Update Snippet' }
-      await res.render('./users/account', { data })
+      // const data = { title: 'Update Snippet' }
+      await res.render('./users/account')
       await res.redirect('.')
     } catch (error) {
       req.session.flash = { type: 'danger', text: error.message }

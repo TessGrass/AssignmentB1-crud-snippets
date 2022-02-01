@@ -1,8 +1,7 @@
 import { User } from '../models/user-model.js'
-import session from 'express-session'
 
 /**
- *
+ * Controls the login process.
  */
 export class LoginController {
 /**

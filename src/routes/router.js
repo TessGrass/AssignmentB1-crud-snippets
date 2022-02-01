@@ -20,9 +20,3 @@ router.use('*', (req, res, next) => {
   console.log('dfgdfg')
   res.status(404).render('errors/404')
 })
-
-/* router.use('*', (err, req, res, next) => {
-  const error = new Error('Page Not Found')
-  error.status = 404
-  next(error)
-}) */
