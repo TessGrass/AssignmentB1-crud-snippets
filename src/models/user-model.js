@@ -31,6 +31,9 @@ userSchema.pre('save', async function () {
  * @returns {object} user that matches username.
  */
 userSchema.statics.authenticate = async function (username, password) {
+  /* if (password < minlength) {
+    console.log('gggggggggggggg')
+  } else { */
   const user = await this.findOne({ username })
   if (!user || !(await bcrypt.compare(password, user.password))) {
     throw new Error('Invalid login attempt.')

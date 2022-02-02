@@ -13,12 +13,14 @@ import { connectDB } from './config/mongoose.js'
 import logger from 'morgan'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import helmet from 'helmet'
 const app = express()
 const directoryFullName = dirname(fileURLToPath(import.meta.url)) // Sökvägen från C:/ till src.
 const baseURL = process.env.BASE_URL || '/'
 app.use(logger('dev'))
 app.use(express.urlencoded({ extended: false })) // if removed, you can't add products.
 app.use(express.static(join(directoryFullName, '..', 'public')))
+app.use(helmet())
 
 try {
   await connectDB()
@@ -45,6 +47,7 @@ try {
   app.use(session(sessionOpt))
 
   app.use((req, res, next) => {
+    console.log(req.headers)
     if (req.session.flash) {
       res.locals.flash = req.session.flash
       delete req.session.flash
@@ -57,12 +60,13 @@ try {
 
   // Register routes.
   app.use('/', router)
+
+  app.use(function (error, req, res, next) {
+    if (error.status === 404) {
+      return res.status(404).sendFile(join(directoryFullName, 'views', 'errors', '404.ejs'))
+    }
+  })
 } catch (err) {
   console.error(err)
   process.exitCode = 1
 }
-app.use(function (error, req, res, next) {
-  if (error.status === 404) {
-    return res.status(404).sendFile(join(directoryFullName, 'views', 'errors', '404.ejs'))
-  }
-})

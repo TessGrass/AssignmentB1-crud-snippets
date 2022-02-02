@@ -1,6 +1,6 @@
 import express from 'express'
 import { AccountController } from '../controllers/account-controller.js'
-import { Snippet } from '../models/snippets-model.js'
+// import { Snippet } from '../models/snippets-model.js'
 export const router = express.Router()
 const accountController = new AccountController()
 
@@ -10,8 +10,6 @@ router.post('/update', accountController.authenticateUser, accountController.upd
 router.post('/delete', (req, res, next) => {
   accountController.deleteSnippet(req, res, next)
 })
-
-// router.post('/delete', accountController.authorize, accountController.deleteSnippets)
 
 router.get('/update/:id', accountController.authenticateUser, accountController.authorizeUser, accountController.renderUpdate)
 /* router.get('/update/:id', async (req, res, next) => {

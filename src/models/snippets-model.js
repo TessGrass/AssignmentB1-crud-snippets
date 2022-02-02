@@ -13,6 +13,10 @@ const snippetSchema = new Schema({
   author: {
     type: String,
     required: true
+  },
+  language: {
+    type: String,
+    required: true
   }
 }, { timestamps: true })
 
@@ -24,9 +28,7 @@ const snippetSchema = new Schema({
  * @returns {object} - the snippet matching the id.
  */
 snippetSchema.statics.authorizeUser = async function (id, username) {
-  console.log('herrrrrrrrr')
   const snippet = await Snippet.findById(id)
-  console.log(typeof snippet)
   if (snippet.author !== username) {
     throw new Error('You cant access this content')
   }

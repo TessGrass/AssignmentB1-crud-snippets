@@ -31,19 +31,16 @@ export class AccountController {
    */
   async authorizeUser (req, res, next) {
     try {
-      console.log('ffffffffff')
-      console.log(req.params.id)
-      console.log(req.session.username)
-
       await Snippet.authorizeUser(req.params.id, req.session.username)
 
       next()
     } catch (error) {
-      req.session.flash = {
+      /* req.session.flash = {
         type: 'danger',
         text: 'You dont have access to this content'
-      }
-      /* res.status(403) */
+      } */
+      res.status(403).render('../views/errors/404')
+
       // res.redirect(403, '../')
       /* res.redirect('.') */
       // res.redirect('../')
@@ -66,7 +63,6 @@ export class AccountController {
         id: obj._id,
         author: obj.author
       }))
-      console.log()
       res.render('../views/users/account', { snippet, data })
     } catch (error) {
       next(error)
@@ -106,13 +102,13 @@ export class AccountController {
       const createSnippet = new Snippet({
         title: req.body.name,
         body: req.body.usersnippet,
-        author: req.body.authorname
+        author: req.body.authorname,
+        language: req.body.language
       })
       await createSnippet.save()
       req.session.flash = {
         type: 'success', text: 'The snippet was created successfully!'
       }
-      // const data = { title: 'Account' }
       res.render('../views/users/account', { createSnippet })
       res.redirect('./account')
     } catch (error) {

@@ -18,7 +18,8 @@ export class SnippetController {
         title: obj.title,
         id: obj._id,
         body: obj.body,
-        author: obj.author
+        author: obj.author,
+        language: obj.language
       }))
       res.render('../views/snippets/snippets', { snippet, data }) // render to snippets
     } catch (error) {

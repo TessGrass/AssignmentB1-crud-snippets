@@ -22,10 +22,10 @@ export class SignUpController {
       req.session.flash = {
         type: 'success', text: 'The account was created successfully!'
       }
-      await res.redirect('/login')
+      res.redirect('/login')
     } catch (error) {
       req.session.flash = { type: 'danger', text: 'The username is already taken. Please try again.' }
-      await res.redirect('/signup')
+      res.redirect('/signup')
     }
   }
 }
