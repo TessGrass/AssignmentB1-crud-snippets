@@ -5,12 +5,26 @@ import { User } from '../models/user-model.js'
  */
 export class LoginController {
 /**
- * Handles the user login attempt.
+ * Render the login page.
  *
  * @param {object} req - Express request object.
  * @param {object} res - Express respons object.
- * @param {object} next - Express next middleware function.
  */
+  async renderLoginPage (req, res) {
+    const csrfToken = { token: req.csrfToken() }
+    console.log(csrfToken)
+    const data = { login: req.session.username }
+    console.log(req.session)
+    res.render('./users/login', { data, csrfToken })
+  }
+
+  /**
+   * Handles the user login attempt.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
+   */
   async loginUser (req, res, next) {
     try {
       const loginUser = await User.authenticate(req.body.username, req.body.password)
@@ -24,7 +38,6 @@ export class LoginController {
 
       res.redirect('./account')
     } catch (error) {
-      console.log(error)
       req.session.flash = { type: 'danger', text: 'Login failed. Please try again.' }
       res.redirect('./login')
     }

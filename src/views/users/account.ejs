@@ -6,6 +6,7 @@
   <div class="account-startpage">
       <div class="create-snippet-wrapper">
   <form method="post" action="./account">
+    <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
     <p class="snippet-title">Snippet title</p>
         <input type="text" id="inputName" name="name" placeholder="Snippet name" required="required" autofocus="autofocus" />
     <p>Snippet code</p>
@@ -25,6 +26,7 @@
   </thead>
   <table>
       <form method="post" action="./account/delete">
+        <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
           
     <% if (snippet?.length > 0) { %>
         <% const author = snippet.filter(function (author) {

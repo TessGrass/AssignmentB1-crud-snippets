@@ -6,7 +6,6 @@ import { router as signUpRouter } from './signup-router.js'
 import { router as loginRouter } from './login-router.js'
 import { router as accountRouter } from './account-router.js'
 import { router as signOutRouter } from './signout-router.js'
-// import { csurf }
 export const router = express.Router()
 
 router.use('/', homeRouter)
@@ -16,7 +15,6 @@ router.use('/login', loginRouter)
 router.use('/account', accountRouter)
 router.use('/signout', signOutRouter)
 
-router.use('*', (req, res, next) => {
-  console.log('dfgdfg')
+router.use('*', (req, res) => {
   res.status(404).render('errors/404')
 })

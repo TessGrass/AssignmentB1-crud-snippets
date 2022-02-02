@@ -35,15 +35,9 @@ export class AccountController {
 
       next()
     } catch (error) {
-      /* req.session.flash = {
-        type: 'danger',
-        text: 'You dont have access to this content'
-      } */
-      res.status(403).render('../views/errors/404')
-
-      // res.redirect(403, '../')
-      /* res.redirect('.') */
-      // res.redirect('../')
+      const err = new Error('Forbidden')
+      err.status = 403
+      next(err)
     }
   }
 
@@ -56,6 +50,7 @@ export class AccountController {
    */
   async userAccount (req, res, next) {
     try {
+      const csrfToken = { token: req.csrfToken() }
       const data = { login: req.session.username, title: 'Account' }
       const snippet = (await Snippet.find()).map(obj => ({
         title: obj.title,
@@ -63,7 +58,7 @@ export class AccountController {
         id: obj._id,
         author: obj.author
       }))
-      res.render('../views/users/account', { snippet, data })
+      res.render('../views/users/account', { snippet, data, csrfToken })
     } catch (error) {
       next(error)
     }
@@ -136,7 +131,6 @@ export class AccountController {
       req.session.flash = {
         type: 'success', text: 'The snippet was updated successfully.'
       }
-      // const data = { title: 'Update Snippet' }
       await res.render('./users/account')
       await res.redirect('.')
     } catch (error) {
@@ -155,8 +149,9 @@ export class AccountController {
   async renderUpdate (req, res, next) {
     const id = req.params.id
     const result = await Snippet.findById(id)
-    const data = { name: result, title: 'Update Snippet' }
-    res.render('./users/update', { data })
+    const data = { name: result }
+    const csrfToken = { token: req.csrfToken() }
+    res.render('./users/update', { data, csrfToken })
   }
 
   /**

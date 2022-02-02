@@ -4,6 +4,18 @@ import { User } from '../models/user-model.js'
  * Controls the sing-up process.
  */
 export class SignUpController {
+/**
+ * Render the sign-up page.
+ *
+ * @param {object} req - Express request object.
+ * @param {object} res - Express respons object.
+ */
+  renderSignUpPage (req, res) {
+    const csrfToken = { token: req.csrfToken() }
+    const data = { login: req.session.username }
+    res.render('./users/signup', { data, csrfToken })
+  }
+
   /**
    * Creates a user.
    *

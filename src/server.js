@@ -7,6 +7,7 @@
 import express from 'express'
 import session from 'express-session'
 import { sessionOpt } from './config/sessions.js'
+import csurf from 'csurf'
 import { router } from './routes/router.js'
 import expressLayouts from 'express-ejs-layouts'
 import { connectDB } from './config/mongoose.js'
@@ -38,7 +39,6 @@ try {
     next()
   })
 
-  // HÄR SAKNAS DET NÅGOT MED PROXY
   if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sessionOpt.cookie.secure = true // serve secure cookies
@@ -47,7 +47,6 @@ try {
   app.use(session(sessionOpt))
 
   app.use((req, res, next) => {
-    console.log(req.headers)
     if (req.session.flash) {
       res.locals.flash = req.session.flash
       delete req.session.flash
@@ -58,12 +57,18 @@ try {
     next()
   })
 
+  app.use(csurf())
+
   // Register routes.
   app.use('/', router)
 
-  app.use(function (error, req, res, next) {
+  app.use(function (error, req, res) {
     if (error.status === 404) {
-      return res.status(404).sendFile(join(directoryFullName, 'views', 'errors', '404.ejs'))
+      return res.status(404).render(join(directoryFullName, 'views', 'errors', '404.ejs'))
+    } else if (error.status === 403) {
+      return res.status(403).render(join(directoryFullName, 'views', 'errors', '403.ejs'))
+    } else if (error.status === 500) {
+      return res.status(500).render(join(directoryFullName, 'views', 'errors', '500.ejs'))
     }
   })
 } catch (err) {

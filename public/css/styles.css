@@ -113,8 +113,8 @@ li a:hover {
 
 input {
   box-shadow: 
-             0 0  8px 2px rgb(226, 228, 227),
-             0.3em 0.3em 1em rgba(180, 170, 221, 0.3);
+  0 0  8px 2px rgb(226, 228, 227),
+  0.3em 0.3em 1em rgba(180, 170, 221, 0.3);
   display: block;
   margin-bottom: 15px;
   padding: 10px;
@@ -188,6 +188,7 @@ tr:hover {
 
 .snippetwrapper {
   display: inline-block;
+  margin-bottom: 1px;
 }
 
 .snippetwrapper > pre {
@@ -394,10 +395,27 @@ input {
   text-align: center;
 }
 
+.error-text-pass {
+  text-align: center;
+  font-size: 22px;
+}
+
 .author-create {
   font-size: 12px;
   margin-bottom: 10px;
   margin-top: 0px;
+}
+
+.update-snippet-h1 {
+  margin-top: 40px;
+}
+
+.snippet-update-wrapper {
+  margin-left: 15px;
+}
+
+.btn-update-snippet {
+  margin-left: 15px;
 }
 
 

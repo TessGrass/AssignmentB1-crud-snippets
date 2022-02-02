@@ -7,9 +7,20 @@ export class SignOutController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
+   * @param {object} next - Express next middleware function.
    */
-  async destroySession (req, res) {
-    await req.session.destroy()
-    res.redirect('/login')
+  async destroySession (req, res, next) {
+    try {
+      if (req.session.username === undefined) {
+        const err = new Error('PageNotFound')
+        err.status = 404
+        next(err)
+      } else {
+        await req.session.destroy()
+        res.redirect('/login')
+      }
+    } catch (error) {
+      next(error)
+    }
   }
 }
