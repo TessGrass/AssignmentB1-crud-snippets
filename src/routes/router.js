@@ -15,6 +15,13 @@ router.use('/login', loginRouter)
 router.use('/account', accountRouter)
 router.use('/signout', signOutRouter)
 
-router.use('*', (req, res) => {
+router.use('*', (req, res, next) => {
+  const err = new Error('PageNotFound')
+  err.status = 404
+  return next(err)
+
+  /* router.use('*', (req, res, next) => {
   res.status(404).render('errors/404')
+}) */
+  // res.status(404).render('errors/404')
 })

@@ -8,17 +8,20 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
-  async authenticateUser (req, res, next) {
+  authenticateUser (req, res, next) {
     if (req.session.username) {
       next()
-    } else {
-      req.session.flash = {
+    } else if (!req.session.username) {
+      const error = new Error('PageNotFound')
+      error.status = 404
+      next(error)
+      /* req.session.flash = {
         type: 'danger',
         text: 'Please login before trying to access this content.'
       }
-      res.redirect('/')
+      res.redirect('./') */
     }
   }
 
@@ -27,17 +30,16 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async authorizeUser (req, res, next) {
     try {
-      await Snippet.authorizeUser(req.params.id, req.session.username)
+      await Snippet.authorizeUser(req.params.id, req.body.id, req.session.username)
 
       next()
     } catch (error) {
-      const err = new Error('Forbidden')
-      err.status = 403
-      next(err)
+      error.status = 403
+      next(error)
     }
   }
 
@@ -46,7 +48,7 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async userAccount (req, res, next) {
     try {
@@ -69,7 +71,7 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async viewUserSnippets (req, res, next) {
     try {
@@ -90,7 +92,7 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async createSnippet (req, res, next) {
     try {
@@ -117,7 +119,7 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async updateSnippet (req, res, next) {
     try {
@@ -144,7 +146,7 @@ export class AccountController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async renderUpdate (req, res, next) {
     const id = req.params.id
@@ -163,7 +165,6 @@ export class AccountController {
    */
   async deleteSnippet (req, res, next) {
     try {
-      console.log(req.body.id)
       await Snippet.findByIdAndDelete(req.body.id)
       req.session.flash = {
         type: 'success', text: 'The snippet was deleted successfully.'

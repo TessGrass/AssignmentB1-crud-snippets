@@ -9,7 +9,7 @@ export class SnippetController {
  *
  * @param {object} req - Express request object.
  * @param {object} res - Express respons object.
- * @param {object} next - Express next middleware function.
+ * @param {Function} next - Express next middleware function.
  */
   async viewSnippets (req, res, next) {
     try {

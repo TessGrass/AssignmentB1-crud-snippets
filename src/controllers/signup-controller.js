@@ -21,7 +21,7 @@ export class SignUpController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async createUser (req, res, next) {
     try {
@@ -34,10 +34,10 @@ export class SignUpController {
       req.session.flash = {
         type: 'success', text: 'The account was created successfully!'
       }
-      res.redirect('/login')
+      res.redirect('./login')
     } catch (error) {
       req.session.flash = { type: 'danger', text: 'The username is already taken. Please try again.' }
-      res.redirect('/signup')
+      res.redirect('./signup')
     }
   }
 }

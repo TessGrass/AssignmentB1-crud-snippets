@@ -12,9 +12,7 @@ export class LoginController {
  */
   async renderLoginPage (req, res) {
     const csrfToken = { token: req.csrfToken() }
-    console.log(csrfToken)
     const data = { login: req.session.username }
-    console.log(req.session)
     res.render('./users/login', { data, csrfToken })
   }
 
@@ -23,7 +21,7 @@ export class LoginController {
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
-   * @param {object} next - Express next middleware function.
+   * @param {Function} next - Express next middleware function.
    */
   async loginUser (req, res, next) {
     try {

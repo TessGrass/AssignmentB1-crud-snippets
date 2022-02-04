@@ -4,23 +4,23 @@
     <div>
       <ul>
         <li>
-          <a href="/">Home</a>
+          <a href="./">Home</a>
         </li>
         <li>
-          <a href="/snippets">View Snippets</a>
+          <a href="./snippets">View Snippets</a>
         </li>
         <li>
           <% if(typeof username !== 'undefined') { %>
-            <a href="/account"><%=username %>'s Place</a>
+            <a href="./account"><%=username %>'s Place</a>
           <%}else { %>
-            <a href="/signup">Sign-up</a>
+            <a href="./signup">Sign-up</a>
           <%}%>
         </li>
         <li>
           <% if(typeof username === 'undefined') { %>
-            <a href="/login">Login</a>
+            <a href="./login">Login</a>
           <%}else { %>
-            <a href="/signout">Sign-out</a>
+            <a href="./signout">Sign-out</a>
           <%}%>
         </li>
         </li>
