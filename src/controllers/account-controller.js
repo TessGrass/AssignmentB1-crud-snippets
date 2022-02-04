@@ -4,7 +4,7 @@ import { Snippet } from '../models/snippets-model.js'
  */
 export class AccountController {
   /**
-   * Checks if there is user logged in.
+   * Checks if there is a user logged in.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
@@ -17,11 +17,6 @@ export class AccountController {
       const error = new Error('PageNotFound')
       error.status = 404
       next(error)
-      /* req.session.flash = {
-        type: 'danger',
-        text: 'Please login before trying to access this content.'
-      }
-      res.redirect('./') */
     }
   }
 
@@ -44,7 +39,7 @@ export class AccountController {
   }
 
   /**
-   * Checks if user has permission to access a certain content.
+   * Render a authorized user's account.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
@@ -67,7 +62,7 @@ export class AccountController {
   }
 
   /**
-   * Render the authorized user snippets.
+   * Render a authorized user's snippets.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
@@ -161,7 +156,7 @@ export class AccountController {
   }
 
   /**
-   * Deletes the chosen snippet.
+   * Deletes a snippet.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.

@@ -1,7 +1,7 @@
 import { User } from '../models/user-model.js'
 
 /**
- * Controls the sing-up process.
+ * Controls the sign-up process.
  */
 export class SignUpController {
 /**

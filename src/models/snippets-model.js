@@ -44,11 +44,6 @@ snippetSchema.statics.authorizeUser = async function (id, bodyid, username) {
       return snippet
     }
   }
-  /* const snippet = await Snippet.findById(id)
-  if (snippet.author !== username) {
-    throw new Error('You cant access this content') */
 }
-/* return snippet
-} */
 
 export const Snippet = mongoose.model('Snippet', snippetSchema)
