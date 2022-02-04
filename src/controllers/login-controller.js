@@ -10,7 +10,7 @@ export class LoginController {
  * @param {object} req - Express request object.
  * @param {object} res - Express respons object.
  */
-  async renderLoginPage (req, res) {
+  renderLoginPage (req, res) {
     const csrfToken = { token: req.csrfToken() }
     const data = { login: req.session.username }
     res.render('./users/login', { data, csrfToken })
@@ -23,7 +23,7 @@ export class LoginController {
    * @param {object} res - Express respons object.
    * @param {Function} next - Express next middleware function.
    */
-  async loginUser (req, res, next) {
+  async authenticateAUser (req, res, next) {
     try {
       const loginUser = await User.authenticate(req.body.username, req.body.password)
       req.session.regenerate((error) => { // ges ett nytt ID när man loggar in, så man inte får samma som tidigare

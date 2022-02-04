@@ -14,5 +14,5 @@ router.get('/', csurf(), loginController.renderLoginPage)
   res.render('./users/login', { data, csrfToken }) */
 /* }) */
 router.post('/', (req, res, next) => {
-  loginController.loginUser(req, res, next)
+  loginController.authenticateAUser(req, res, next)
 })

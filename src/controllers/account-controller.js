@@ -4,13 +4,13 @@ import { Snippet } from '../models/snippets-model.js'
  */
 export class AccountController {
   /**
-   * Checks if the user exists and the password matches.
+   * Checks if there is user logged in.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express respons object.
    * @param {Function} next - Express next middleware function.
    */
-  authenticateUser (req, res, next) {
+  CheckForSessionUserName (req, res, next) {
     if (req.session.username) {
       next()
     } else if (!req.session.username) {
@@ -149,11 +149,15 @@ export class AccountController {
    * @param {Function} next - Express next middleware function.
    */
   async renderUpdate (req, res, next) {
-    const id = req.params.id
-    const result = await Snippet.findById(id)
-    const data = { name: result }
-    const csrfToken = { token: req.csrfToken() }
-    res.render('./users/update', { data, csrfToken })
+    try {
+      const id = req.params.id
+      const result = await Snippet.findById(id)
+      const data = { name: result }
+      const csrfToken = { token: req.csrfToken() }
+      res.render('./users/update', { data, csrfToken })
+    } catch (error) {
+      next(error)
+    }
   }
 
   /**
