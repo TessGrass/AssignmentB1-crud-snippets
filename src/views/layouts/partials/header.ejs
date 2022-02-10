@@ -1,0 +1,30 @@
+
+<header>
+<nav>   
+    <div>
+      <ul>
+        <li>
+          <a href="./">Home</a>
+        </li>
+        <li>
+          <a href="./snippets">View Snippets</a>
+        </li>
+        <li>
+          <% if(typeof username !== 'undefined') { %>
+            <a href="./account"><%=username %>'s Place</a>
+          <%}else { %>
+            <a href="./signup">Sign-up</a>
+          <%}%>
+        </li>
+        <li>
+          <% if(typeof username === 'undefined') { %>
+            <a href="./login">Login</a>
+          <%}else { %>
+            <a href="./signout">Sign-out</a>
+          <%}%>
+        </li>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

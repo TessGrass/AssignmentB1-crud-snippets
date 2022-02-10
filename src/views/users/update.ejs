@@ -1,0 +1,17 @@
+
+
+<h1 class="update-snippet-h1">Update Snippet</h1>
+      
+<form method="post" action="./account/update">
+    <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
+    <div class="snippet-update-wrapper">
+      <p>Snippet name</p>
+      <input type="text" id="inputName"" name="title" value="<%=data.name.title%>" required="required" autofocus="autofocus" />
+      <p>Snippet description</p>
+      <textarea id="body" name="body" rows="8" cols="50"><%=data.name.body%></textarea>
+    </div>
+    <button type="submit" name="author" value="<%=data.name.author%>" class="btn-update-snippet">Update</button>
+    <input type="hidden" name="id" value="<%=data.name.id%>" />
+  </form>
+
+

@@ -1,0 +1,51 @@
+
+  
+  <h1>Hi <%=data.login %>!</h1>
+  <h2>This is your own little space. Here you can create, read, uppdate and delete your own snippet. Have fun!</h2>
+  
+  <div class="account-startpage">
+      <div class="create-snippet-wrapper">
+  <form method="post" action="./account">
+    <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
+    <p class="snippet-title">Snippet title</p>
+        <input type="text" id="inputName" name="name" placeholder="Snippet name" required="required" autofocus="autofocus" />
+    <p>Snippet code</p>
+        <textarea id="usersnippet" name="usersnippet" rows="8" cols="50" required ="required"></textarea>
+        <p class="language-title">Language</p>
+        <input type="text" class="language-tag" id="language" placeholder="For example: Javascript" name="language" required="required">
+    <p class="author-create">Author: <%=data.login%></p>
+         <input type="hidden" name="authorname" value="<%=data.login%>" />
+       <button type="submit" class="savebutton">Create Snippet</button><br>
+    </form> 
+  </div>
+       <div class="usersnippet-wrapper">
+  <thead>
+    <tr>
+      <th>Your Snippets</th>
+    </tr>
+  </thead>
+  <table>
+      <form method="post" action="./account/delete">
+        <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
+          
+    <% if (snippet?.length > 0) { %>
+        <% const author = snippet.filter(function (author) {
+            return author.author === data.login;
+          })%>
+      <% author.forEach(obj => { %>
+        <tr>
+          <th class="title-in-table"><%= obj.title %></th>
+          <td class="body-in-table"><%=obj.body%></a></td><td class="update-in-table"><a class="edit" href="account/update/<%=obj.id %>">Update</a></td><td class="delete-btn-in-table"><button type="submit" name="id" value="<%=obj.id %>" class="delete-btn">delete</button></td>
+        </a>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr colspan="2">
+        <td class="text-center">No snippets to display.</td>
+      </tr>
+      <% } %>
+     
+      </form>
+</table>
+</div>
+</div>

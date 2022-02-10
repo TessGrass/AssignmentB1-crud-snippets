@@ -1,0 +1,12 @@
+
+<div class ="signup-page">
+    <p class="signup-page-text">SIGN UP HERE</p>
+    <form method="post" action="./signup">
+        <input type="hidden" name="_csrf" value="<%=csrfToken.token%>">
+        <label for="fname">User Name</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="lname">Password (min 8 characters)</label><br>
+        <input type="password" pattern=".{8,600}" id="signup" name="password"><br>
+        <button type="submit" class="button-signup-login">Create User</button>
+    </form>                  
+</div>
